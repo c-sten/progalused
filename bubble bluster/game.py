@@ -1,6 +1,8 @@
 import pygame
 from settings import Settings
 from player import Player
+from bubble import Bubble
+import game_functions as gf
 
 def run_game():
     pygame.init()
@@ -10,18 +12,11 @@ def run_game():
     pygame.display.set_caption(gm_settings.caption)
     
     player = Player(screen)
+    bubble = Bubble(screen, gm_settings)
     
-    running = True
-    while running:
-        screen.fill(gm_settings.bg_color)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        
-        player.blit_me()
+    while True:
+        gf.check_events()
+        player.update()
+        gf.update_screen(gm_settings, screen, player)
     
-        pygame.display.flip()
-
-    pygame.quit()
-
 run_game()

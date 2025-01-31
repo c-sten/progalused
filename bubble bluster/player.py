@@ -9,6 +9,9 @@ class Player(pygame.sprite.Sprite):
         self.player = pygame.Surface((75, 25))
         self.player.fill((255, 0, 0))
         self.rect = self.player.get_rect()
-        
+    
+    def update(self):
+        if self.moving_right:
+            self.rect.move_ip(5, 0)
     def blit_me(self):
         self.screen.blit(self.player, self.rect)
